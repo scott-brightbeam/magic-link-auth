@@ -1,6 +1,6 @@
 {
   "name": "@brightbeam/magic-link",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Email magic-link sign-in for allowlisted users: scanner-safe, single-use, framework-agnostic (Fetch Request/Response).",
   "type": "module",
   "license": "MIT",
@@ -11,9 +11,17 @@
     "./stores/memory": "./src/stores/memory.js",
     "./mailers": "./src/mailers.js"
   },
-  "files": ["src", "README.md", "LICENSE"],
-  "scripts": { "test": "bun test" },
-  "engines": { "node": ">=20" },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bun test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@libsql/client": "^0.15.0",
     "hono": "^4.12.10"

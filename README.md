@@ -14,7 +14,7 @@ It handles the link lifecycle and nothing else. **Your app keeps its own session
 ## Install
 
 ```bash
-bun add github:scott-brightbeam/magic-link-auth#v0.1.0
+bun add github:scott-brightbeam/magic-link-auth#v0.2.0
 ```
 
 ## Use (Hono + libSQL/Turso + Resend)
@@ -63,11 +63,12 @@ Your sign-in UI POSTs `{ "email": "…" }` (JSON) to `{base}/request` and shows 
 ## Stores and mailers
 
 - `libsqlStore(client, { tablePrefix })` works with libSQL, Turso or SQLite (anything with `execute({ sql, args })`). `memoryStore()` is for tests and single-process development only.
+- `cloudflareMailer({ accountId, apiToken, from, fromName, replyTo })` uses the Cloudflare Email Service REST API. `from` must be on a domain onboarded for Email Sending, and arbitrary recipients need the Workers Paid plan.
 - `resendMailer({ apiKey, from, replyTo })`, `consoleMailer()` and `captureMailer()` (tests). A mailer is any object with `async send({ to, subject, text, html })` that throws on failure.
 
 ## Sending domain
 
-Resend only sends from a domain you have verified, so the `from` address must be on a domain whose DNS you control. A `*.fly.dev` or other platform hostname cannot be used. Give each app a sending domain that matches its own web address.
+Every provider sends only from a domain you have verified, so a `*.fly.dev` or other platform hostname cannot be the `from` address. At Brightbeam, apps live at a subdomain of `brightbeam.works` (Cloudflare DNS, with a Fly certificate for apps on Fly), and `brightbeam.works` is already onboarded for Cloudflare Email Sending, so `cloudflareMailer` with a `@brightbeam.works` sender is the default choice.
 
 ## Test
 

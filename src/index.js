@@ -1,7 +1,7 @@
 export { createMagicLink, defaultClientIp } from './core.js'
 export { memoryStore } from './stores/memory.js'
 export { libsqlStore } from './stores/libsql.js'
-export { resendMailer, consoleMailer, captureMailer } from './mailers.js'
+export { resendMailer, cloudflareMailer, consoleMailer, captureMailer } from './mailers.js'
 export { normaliseEmail, maskEmail } from './email.js'
 export { mintToken, hashToken } from './token.js'
 export * as templates from './templates.js'
